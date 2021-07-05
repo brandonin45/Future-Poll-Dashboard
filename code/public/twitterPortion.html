@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Project 3 test</title>
+
+  <link href="style.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="twitterPortion"></div>
+
+
+
+
+
+<script type="text/babel">
+  class TwitterPortion extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        id: "0",
+        isLoaded: false,
+        data: [],
+      }
+      this.slideChange = this.slideChange.bind(this);
+      this.slideSubmit = this.slideSubmit.bind(this);
+    }
+
+    componentDidMount() {
+      var url = 'http://localhost:3000/file/' + this.state.id;
+      console.log('app mounted');
+      fetch(url)
+              .then(response => response.json())
+              .then(data => {
+                this.setState({
+                  isLoaded: true,
+                  data: data.articles,
+                });
+              })
+              .catch(err => {
+                console.log(err);
+              });
+    }
+
+    renderArticles() {
+      console.log("DATA:");
+      console.log(this.state);
+      return (
+              this.state.data.map(s => (
+                      <a href={s.url} rel="noopener nonreferrer" target="blank" className="link">
+                        <div className="card-container">
+                          <div><h1 className="title">{s.includes.users['0'].name}</h1></div>
+                          <span className="textbox">
+                            <div className="desc">{s.data.text}</div>
+
+                          </span>
+                        </div>
+                      </a>
+              ))
+      )
+    }
+
+    slideChange(event) {
+      //this.setState({isLoaded:false});
+      var val = event.target.value;
+      this.setState({id: event.target.value}, this.slideSubmit(val));
+    }
+
+    slideSubmit(idval) {
+      var url = 'http://localhost:3000/file/' + idval;
+      fetch(url)
+              .then(response => response.json())
+              .then(data => {
+                console.log(data);
+                this.setState({
+                  isLoaded: true,
+                  data: data.articles,
+                  string: data.totalResults
+                });
+              })
+              .catch(err => {
+                console.log(err);
+              });
+    }
+
+
+    render() {
+      const { id, isLoaded, data } = this.state;
+      if(!this.state.isLoaded) {
+        return (
+                <div>Loading...</div>
+        );
+      }  else {
+        return (
+
+                <div className="Newswrapper">
+                  <div className="slidecontainer">
+                    <input type="range" min="0" max="45" className="slider" value={this.state.id} onChange={this.slideChange} />
+                    <p>{this.state.id}</p>
+                  </div>
+                  <div className="Newscardcontainer">
+                    <h1 className="Newsupdatestitle">News Updates</h1>
+                    <div className="Newscontainer">
+                      {this.renderArticles()}
+                    </div>
+                  </div>
+                </div>
+
+        );
+      }
+
+    }
+  }
+
+  ReactDOM.render(
+          <TwitterPortion />,
+          document.getElementById('twitterPortion')
+  );
+</script>
+
+
+
+
+</body>
+
+</html>
