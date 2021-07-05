@@ -6,9 +6,14 @@ This repo showcases the future poll dashboard my team and I developed during my 
  * Displays multiple news articles, twitter posts, and stock data that change together via the scroll bar
 
 ## Demo
-<p align="center>
+
+<p algin="center">
   <img width="460" height="300" src="images/futureg.gif">
-</p>
+   </p>                                                     
+                                                        
+                                                        
+                                                        
+                                                       
 ## Building it
  1. Open a shell
  2. Type ```npm install```
