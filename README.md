@@ -8,7 +8,7 @@ This repo showcases the future poll dashboard my team and I developed during my 
 ## Demo
 
 <p align="center">
-  <img width="700" height="500" src="images/futureg.gif">
+  <img width="600" height="400" src="images/futureg.gif">
    </p>                                                     
                                                         
                                                         
