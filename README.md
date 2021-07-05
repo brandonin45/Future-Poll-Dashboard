@@ -15,7 +15,10 @@ This repo showcases the future poll dashboard my team and I developed during my 
                                                         
                                                        
 ## Building it
- 1. Open a shell
- 2. Type ```npm install```
- 3. Type ```npm start```
- 4. Done!
+ 1. Download Repository
+ 2. Open shell
+ 3. Navigate to code folder
+ 5. Type ```npm install```
+ 6. Type ```npm start```
+ 7. This may take a while
+ 8. Done!
