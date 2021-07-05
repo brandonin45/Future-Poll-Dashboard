@@ -10,6 +10,6 @@ This repo showcases the future poll dashboard my team and I developed during my 
 
 ## Building it
  1. Open a shell
- 2. > npm install
+ 2. Type ```shell npm install```
  3. > npm start
  4. Done!
